@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 
 library(magrittr) # For the pipe
 library(fontawesome) # For icons
+library(tidyverse)
+library(showtext) # For custom fonts in ggplot
 source("cv_printing_functions.r")
 
 # Read in all data and initialize a CV printer object
@@ -26,6 +28,12 @@ CV <- create_CV_object(
   data_location = "https://docs.google.com/spreadsheets/d/1yOBU3kymAWXtOY60zPzBOmA45xm-YdYek0GDipeAVvo/edit?usp=sharing", 
   pdf_mode = params$pdf_mode
 )
+
+# Add a custom font
+
+font_add_google("Exo", family = "Exo")
+
+showtext_auto()
 
 ```
 
@@ -44,12 +52,6 @@ if(params$pdf_mode) {
 
 Aside
 ================================================================================
-
-```{r}
-# Build interactive network of positions colored by section
-# and connected if they occurred in the same year
-datadrivencv::build_network_logo(CV$entries_data)
-```
 
 ```{r}
 if(params$pdf_mode){
@@ -82,14 +84,38 @@ Languages
 
 **Spanish**: Native
 
-**English**: Advanced, TOEFL iBT 119/120
+**English**: Advanced
 
 **French**: Basic
 
 Skills {#skills}
 --------------------------------------------------------------------------------
 
-I have many skills.
+```{r, fig.height= 8}
+CV$skills %>%
+  mutate(skill2 = fct_reorder(skill, level)) %>% 
+  ggplot(aes(skill2, level, label = label))+
+  geom_col(fill = '#484848' )+
+  coord_flip()+
+  theme(
+      panel.background = element_rect(fill='transparent'), #transparent panel bg
+      plot.background = element_rect(fill='#d6d6d6', color = '#d6d6d6'), #transparent plot bg
+      panel.grid.major = element_blank(), #remove major gridlines
+      panel.grid.minor = element_blank(), #remove minor gridlines
+      legend.background = element_rect(fill='transparent'), #transparent legend bg
+      legend.box.background = element_rect(fill='transparent'), #transparent legend panel
+      axis.ticks = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_text(hjust = -0.005),
+      rect = element_rect(fill = 'transparent'),
+      text = element_text(size = 65, family = 'Exo', color = 'black'),
+      )+
+  labs(y = '',
+       x = '')
+  
+
+```
+
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -127,19 +153,24 @@ CV %<>% print_section('teaching_positions')
 
 Research Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
+::: aside
+```{r}
+CV %<>% print_text_block('research_experience_aside')
+```
+:::
 
 ```{r}
 CV %<>% print_section('research_positions')
 ```
 
-Industry Experience {data-icon=laptop}
+Industry Experience {data-icon=briefcase}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('industry_positions')
 ```
 
-Research {data-icon=books}
+Research {data-icon=book}
 --------------------------------------------------------------------------------
 
 ```{r}
@@ -153,9 +184,16 @@ Awards {data-icon=award}
 CV %<>% print_section('awards')
 ```
 
-Extracurriculars {data-icon=award}
+Extracurriculars {data-icon=star}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('extras')
+```
+
+Additional Education {data-icon=area-chart}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('certificates')
 ```

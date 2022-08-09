@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo|Gudea&display=swap");
 
-/* Main text is monserrat*/
+/* Main text is Exo*/
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-size: 12;
   font-weight: 300;
   line-height: 1.3;
   color: #444;
@@ -12,7 +13,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Gudea", sans-serif;
   color: #000;
 }
 
@@ -36,10 +37,10 @@ sup {
 /* Customize some of the sizing variables */
 :root {
   --sidebar-width: 12rem; /* Shrink sidebar width  */
-  --sidebar-background-color: #f7fbff; /* Make sidebar blue */
+  --sidebar-background-color: #d6d6d6; /* Make sidebar blue */
   --sidebar-horizontal-padding: 0.01in; /* Reduce sidebar padding */
   --decorator-outer-dim: 10px; /* Make position deliniating circles larger */
-  --decorator-border: 2px solid #bdd7e7; /* Make timeline a blue as well*/
+  --decorator-border: 2px solid #969696; /* Make timeline a blue as well*/
 }
 
 .details .place {
@@ -85,7 +86,7 @@ sup {
 
 /* Make little circle outline be a light blue */
 .decorator::after {
-  background-color: #08306b;
+  background-color: #000000;
 }
 
 /* Remove the fake bullets from lists */
