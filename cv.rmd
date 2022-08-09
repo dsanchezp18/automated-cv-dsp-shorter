@@ -10,6 +10,7 @@ output:
     css: ['dd_cv.css', 'resume']
     self_contained: true
 ---
+<meta charset="utf-8"> 
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
