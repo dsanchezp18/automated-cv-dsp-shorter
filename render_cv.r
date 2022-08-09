@@ -12,7 +12,6 @@ rmarkdown::render("cv.rmd",
 
 # Knit the PDF version to temporary html location
 tmp_html_cv_loc <- fs::file_temp(ext = ".html")
-
 rmarkdown::render("cv.rmd",
                   params = list(pdf_mode = TRUE),
                   output_file = tmp_html_cv_loc)

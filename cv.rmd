@@ -4,7 +4,7 @@ author: Daniel Sánchez
 date: "`r Sys.Date()`"
 params:
   pdf_mode:
-    value: false
+    value: true
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
@@ -18,11 +18,12 @@ knitr::opts_chunk$set(
 )
 
 library(magrittr) # For the pipe
+library(fontawesome) # For icons
 source("cv_printing_functions.r")
 
 # Read in all data and initialize a CV printer object
 CV <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/1yOBU3kymAWXtOY60zPzBOmA45xm-YdYek0GDipeAVvo/edit?usp=sharing",  
+  data_location = "https://docs.google.com/spreadsheets/d/1yOBU3kymAWXtOY60zPzBOmA45xm-YdYek0GDipeAVvo/edit?usp=sharing", 
   pdf_mode = params$pdf_mode
 )
 
@@ -41,7 +42,6 @@ if(params$pdf_mode) {
 }
 ```
 
-
 Aside
 ================================================================================
 
@@ -51,43 +51,54 @@ Aside
 datadrivencv::build_network_logo(CV$entries_data)
 ```
 
-
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online with links at https://github.com/dsanchezp18/automated-cv-dsp/daniel_sanchez_cv_english.html")
+  cat("View this CV online with links [here](https://github.com/dsanchezp18/automated-cv-dsp/blob/main/cv.html).")
 } else {
-  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/dsanchezp18/automated-cv-dsp/daniel_sanchez_cv_english.pdf)")
+  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/dsanchezp18/automated-cv-dsp/blob/main/cv.pdf)")
 }
 ```
 
 Contact {#contact}
 --------------------------------------------------------------------------------
-
 ```{r}
-CV %>% print_contact_info()
+CV %>% print_contact_info
 ```
 
+<center>
 
+[`r fa('envelope', fill = 'black', height = '2em')`](mailto:dsanchezp998@gmail.com)
+[`r fa('linkedin', fill = 'black', height = '2em')`](https://www.linkedin.com/in/dsanchezp18/)
+[`r fa('github', fill = 'black', height = '2em')`](https://github.com/dsanchezp18)
+[`r fa('link', fill = 'black', height = '2em')`](https://daniel-ec.netlify.app) 
+[`r fa('twitter', fill = 'black', height = '2em')`](https://twitter.com/daniel_ec18)
+[`r fa('book', fill = 'black', height = '2em')`](https://scholar.google.com/citations?user=Xt2yEYgAAAAJ&hl=en)
+[`r fa('r', fill = 'black', height = '2em')`](https://rpubs.com/dsanchezp998)
 
-Language Skills {#skills}
+<center>
+
+Languages
 --------------------------------------------------------------------------------
 
-```{r}
-CV %>% print_skill_bars()
-```
+**Spanish**: Native
 
+**English**: Advanced, TOEFL iBT 119/120
 
+**French**: Basic
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+I have many skills.
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+Made with the R packages [**datadrivencv**](https://github.com/nstrayer/datadrivencv) and [**pagedown**](https://github.com/rstudio/pagedown).
 
-The source code is available [on github.com/nstrayer/cv](https://github.com/dsanchezp18/automated-cv-dsp).
+The source code is available [on my GitHub profile](https://github.com/dsanchezp18/automated-cv-dsp).
 
-Last updated on `r Sys.Date()`.
-
-
+Last updated on `r format(Sys.Date(), format = '%B %Y')`.
 
 Main
 ================================================================================
@@ -107,23 +118,44 @@ Education {data-icon=graduation-cap data-concise=true}
 CV %<>% print_section('education')
 ```
 
-Industry Experience {data-icon=suitcase}
+Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-::: aside
 ```{r}
-CV %<>% print_text_block('industy_experience_aside')
+CV %<>% print_section('teaching_positions')
 ```
-:::
+
+Research Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('research_positions')
+```
+
+Industry Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('industry_positions')
 ```
 
-<!-- These breaks just force a new page so section doesnt get cut off -->
-<br>
-<br>
-<br>
+Research {data-icon=books}
+--------------------------------------------------------------------------------
 
+```{r}
+CV %<>% print_section('academic_articles')
+```
 
+Awards {data-icon=award}
+--------------------------------------------------------------------------------
 
+```{r}
+CV %<>% print_section('awards')
+```
+
+Extracurriculars {data-icon=award}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('extras')
+```
