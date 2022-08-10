@@ -198,3 +198,4 @@ Additional Education {data-icon=area-chart}
 ```{r}
 CV %<>% print_section('certificates')
 ```
+
