@@ -32,6 +32,10 @@ CV <- create_CV_object(
 
 # Add a custom font
 
+CV$entries_data<-
+  CV$entries_data %>% 
+  filter(in_resume == T)
+
 font_add_google("Exo", family = "Exo")
 
 showtext_auto()
@@ -149,47 +153,15 @@ Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %<>% print_section('teaching_positions')
+CV %<>% print_section('industry_positions')
 ```
-
-Research Experience {data-icon=chalkboard-teacher}
---------------------------------------------------------------------------------
-::: aside
-```{r}
-CV %<>% print_text_block('research_experience_aside')
-```
-:::
 
 ```{r}
 CV %<>% print_section('research_positions')
 ```
 
-Industry Experience {data-icon=briefcase}
---------------------------------------------------------------------------------
-
 ```{r}
-CV %<>% print_section('industry_positions')
-```
-
-Research {data-icon=book}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('academic_articles')
-```
-
-Awards {data-icon=award}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('awards')
-```
-
-Extracurriculars {data-icon=star}
---------------------------------------------------------------------------------
-
-```{r}
-CV %<>% print_section('extras')
+CV %<>% print_section('teaching_positions')
 ```
 
 Additional Education {data-icon=area-chart}
