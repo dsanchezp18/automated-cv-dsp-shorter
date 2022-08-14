@@ -4,7 +4,7 @@ author: Daniel Sánchez
 date: "`r Sys.Date()`"
 params:
   pdf_mode:
-    value: true
+    value: false
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
@@ -57,14 +57,6 @@ if(params$pdf_mode) {
 
 Aside
 ================================================================================
-
-```{r}
-if(params$pdf_mode){
-  cat("View this CV online with links [here](https://github.com/dsanchezp18/automated-cv-dsp/blob/main/cv.html).")
-} else {
-  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/dsanchezp18/automated-cv-dsp/blob/main/cv.pdf)")
-}
-```
 
 Contact {#contact}
 --------------------------------------------------------------------------------
