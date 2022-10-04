@@ -69,7 +69,7 @@ CV %>% print_contact_info
 [`r fa('envelope', fill = 'black', height = '2em')`](mailto:dsanchezp998@gmail.com)
 [`r fa('linkedin', fill = 'black', height = '2em')`](https://www.linkedin.com/in/dsanchezp18/)
 [`r fa('github', fill = 'black', height = '2em')`](https://github.com/dsanchezp18)
-[`r fa('link', fill = 'black', height = '2em')`](https://daniel-ec.netlify.app) 
+[`r fa('link', fill = 'black', height = '2em')`](https://daniel-ec.netlify.app)
 [`r fa('twitter', fill = 'black', height = '2em')`](https://twitter.com/daniel_ec18)
 [`r fa('book', fill = 'black', height = '2em')`](https://scholar.google.com/citations?user=Xt2yEYgAAAAJ&hl=en)
 [`r fa('r', fill = 'black', height = '2em')`](https://rpubs.com/dsanchezp998)
@@ -141,7 +141,7 @@ Education {data-icon=graduation-cap data-concise=true}
 CV %<>% print_section('education')
 ```
 
-Teaching Experience {data-icon=chalkboard-teacher}
+Industry Experience {data-icon=suitcase}
 --------------------------------------------------------------------------------
 
 ```{r}
